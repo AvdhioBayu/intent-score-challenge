@@ -25,15 +25,14 @@ public class MatchActivity extends AppCompatActivity {
     private TextView awayTextScore;
     String homename;
     String awayname;
-    String homescorer;
-    String awayscorer;
+    String homescorer = "";
+    String awayscorer = "";
 
     private ImageView homeImage;
     private ImageView awayImage;
 
     private int homeScore;
     private int awayScore;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +113,13 @@ public class MatchActivity extends AppCompatActivity {
                 homeTextScore.setText(String.valueOf(homeScore));
 
                 // Get String data from Intent
-                String returnString = data.getStringExtra("keyName");
+                String tmp = "\n" + data.getStringExtra("scorer_key") + " " +
+                data.getStringExtra("minute_key") + " \"";
 
+                homescorer = homescorer + tmp;
                 // Set text view with string
-                TextView textView = (TextView) findViewById(R.id.textView4);
-                textView.setText(returnString);
+                TextView textView = findViewById(R.id.textView7);
+                textView.setText(homescorer);
             }
         }
         else if (requestCode == AWAY_ACTIVITY_REQUEST_CODE){
@@ -126,11 +127,14 @@ public class MatchActivity extends AppCompatActivity {
                 awayScore++;
                 awayTextScore.setText(String.valueOf(awayScore));
                 // Get String data from Intent
-                String returnString = data.getStringExtra("keyName");
+                String tmp = "\n" + data.getStringExtra("scorer_key") + " " +
+                data.getStringExtra("minute_key") + " \"" ;
+
+                awayscorer = awayscorer + tmp;
 
                 // Set text view with string
-                TextView textView = (TextView) findViewById(R.id.textView5);
-                textView.setText(returnString);
+                TextView textView = findViewById(R.id.textView8);
+                textView.setText(awayscorer);
             }
         }
     }
